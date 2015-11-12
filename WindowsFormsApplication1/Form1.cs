@@ -82,15 +82,19 @@ namespace WindowsFormsApplication1
             // ------------ ARMA Verzeichnis suchen ---------
 
             string vz = sucheVerzeichnis();
-            textBox1.Text += vz + " gefunden.";
-
+            textBox1.Text += vz + " gefunden.\r\n";
+            modDateiEinlesen(vz);
+           
+        }
+        private void modDateiEinlesen(string a_verzeichnis)
+        {
             // Datei einlesen
-            
+
             int counter = 0;
             string line;
             string[] mod = new string[1];
 
-            /* ------ später -------
+            // ------ später -------
             // Read the file and display it line by line.
             System.IO.StreamReader file =
                 new System.IO.StreamReader(@"C:\Program Files (x86)\Steam\steamapps\common\Arma 3\mods.txt");
@@ -98,9 +102,9 @@ namespace WindowsFormsApplication1
             {
                 System.Console.WriteLine(line);
                 mod[counter] = line;
-                label1.Text += arma3_32_d + mod[counter] + ": ";
-                label1.Text +=  (Directory.Exists(arma3_32_d + mod[counter]) ? "File exists." : "File does not exist.") + " \n";
-                
+                textBox1.Text += a_verzeichnis + mod[counter] + ": ";
+                textBox1.Text += (Directory.Exists(a_verzeichnis + mod[counter]) ? "File exists." : "File does not exist.") + " \r\n";
+
                 counter++;
                 Array.Resize(ref mod, counter + 1);
 
@@ -110,16 +114,15 @@ namespace WindowsFormsApplication1
             System.Console.WriteLine("There were {0} lines.", counter);
             // Suspend the screen.
             System.Console.ReadLine();
-            
 
-            label1.Text += "\n Read File: mods.txt success";
-           // textBox1.Text = label1.Text;
-           
+
+            textBox1.Text += "\r\n Read File: mods.txt success";
+            // textBox1.Text = label1.Text;
+
             //textBox1.Text += "\r\n" + "hallo welt";
             textBox1.SelectionStart = textBox1.Text.Length;
-            textBox1.ScrollToCaret();*/
+            textBox1.ScrollToCaret();
         }
-
         private string sucheVerzeichnis()
         {
             string arma32 = @"C:\Program Files (x86)\Steam\steamapps\common\Arma 3\";
