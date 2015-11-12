@@ -24,6 +24,8 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Kleine Änderung im Quelltext
+            // Und noch eine Änderung mehr....
             this.button1.Text = "ich bin ein button";
             //MessageBox.Show("Test");
            int e3 =  myFunction();
