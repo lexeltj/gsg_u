@@ -127,17 +127,23 @@ namespace WindowsFormsApplication1
 
             if (Directory.Exists(arma32))
             {
-                textBox1.Text = arma32;
+                //textBox1.Text = arma32;
                 return arma32;
             }
             else if (Directory.Exists(arma64))
             {
-                textBox1.Text = arma64;
+                //textBox1.Text = arma64;
                 return arma64;
             }
             else
             {
-                string arma_anders = openFileDialog1.FileName;
+                string arma_anders = "";
+
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                {
+                     arma_anders = folderBrowserDialog1.SelectedPath;
+                    
+                }
                 return arma_anders;
             }
 
