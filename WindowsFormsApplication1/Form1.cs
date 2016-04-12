@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace WindowsFormsApplication1
 {
@@ -24,20 +25,25 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
-           // ------------ ARMA Verzeichnis suchen ---------
+            if (button1.Text == "beenden")
+            {
+                Application.Exit();
+            }
+            else
+            {
+                // ---------------- Arma Verzeichniss suchen ---------------
 
-            string vz = sucheVerzeichnis();
-            textBox1.Text += vz + " gefunden.\r\n";
+                string vz = sucheVerzeichnis();
+                textBox1.Text += " gefunden.\r\n";
 
-            // -------- Mod - Datei einlesen
-            modDateiEinlesen(vz);
-           
+                // -------- Mod - Datei einlesen
+                modDateiEinlesen(vz);
+            }
         }
         private void modDateiEinlesen(string a_verzeichnis)
-        {
+             {
             // Datei einlesen
-
+            
             int counter = 0;
             string line;
             string[] mod = new string[1];
@@ -50,9 +56,9 @@ namespace WindowsFormsApplication1
             {
                 System.Console.WriteLine(line);
                 mod[counter] = line;
-                textBox1.Text += a_verzeichnis + mod[counter] + ": ";
-                textBox1.Text += (Directory.Exists(a_verzeichnis + mod[counter]) ? "File exists." : "File does not exist.") + " \r\n";
-
+                label1.Text += a_verzeichnis + mod[counter] + ": ";
+                label1.Text +=  (Directory.Exists(a_verzeichnis + mod[counter]) ? "File exists." : "File does not exist.") + " \n";
+                
                 counter++;
                 Array.Resize(ref mod, counter + 1);
 
@@ -62,14 +68,15 @@ namespace WindowsFormsApplication1
             System.Console.WriteLine("There were {0} lines.", counter);
             // Suspend the screen.
             System.Console.ReadLine();
-
-
+            
             textBox1.Text += "\r\n Read File: mods.txt success";
            
-
             textBox1.SelectionStart = textBox1.Text.Length;
             textBox1.ScrollToCaret();
-        }
+                button1.Text = "beenden";
+                button1.Enabled = true;
+            }
+        
         private string sucheVerzeichnis()
         {
             // Jetzt prüfen wir mal ob es ein bestimmtes Verzeichnis gibt
@@ -96,6 +103,28 @@ namespace WindowsFormsApplication1
                     
                 }
                 return arma_anders;
+            }
+        }
+
+        public string  md5_do(string pbo)
+        {
+            
+            using (var md5 = MD5.Create())
+            {
+                using (var stream = File.OpenRead(pbo))
+                {
+                    //return Encoding.Default.GetString(md5.ComputeHash(stream));
+                   return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower();
+                }
+            }
+        }
+        public bool vergleich(string local, string remote)
+        {
+            if ( local ==  remote)
+                {
+                return true;
+            } else {
+                return false;
             }
         }
     }
