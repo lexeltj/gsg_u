@@ -17,7 +17,7 @@ namespace gsg_u
         public Form1()
         {
             InitializeComponent();
-
+           
             // meins
 
             label1.Text = "Hallo, \nIch update deine ARMA3 - GSG Mod's";
@@ -34,7 +34,7 @@ namespace gsg_u
                 // ---------------- Arma Verzeichniss suchen ---------------
 
                 string vz = sucheVerzeichnis();
-                textBox1.Text += " gefunden.\r\n";
+                textBox1.Text += " gefunden.\r\n" + vz;
 
                 // -------- Mod - Datei einlesen
                 modDateiEinlesen(vz);
