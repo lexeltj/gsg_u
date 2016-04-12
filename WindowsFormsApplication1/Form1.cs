@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Security.Cryptography;
+using System.Net;
 
 namespace gsg_u
 {
@@ -38,6 +39,10 @@ namespace gsg_u
 
                 // -------- Mod - Datei einlesen
                 modDateiEinlesen(vz);
+                // ------ test
+                textBox1.Text += md5_do(@"C:\Program Files (x86)\Steam\steamapps\common\Arma 3\mods.txt");
+                // --- serverdatei download
+                serverModsEinlesen();
             }
         }
         private void modDateiEinlesen(string a_verzeichnis)
@@ -126,6 +131,15 @@ namespace gsg_u
             } else {
                 return false;
             }
+        }
+        public void serverModsEinlesen()
+        {
+            //---------- Aufrufen des Pfades zum Server / Modordner und Pbo's abfragen / MD5-Checksum erstellen ----------
+            // ---- Download der Cheksum Datei ----
+            WebClient webClient = new WebClient();
+            webClient.DownloadFile("http://server.grenzschutzgruppe.de/mod_updates/check.txt", @"c:\Users\lexel\check.txt"); // ist nur zum testen. wird noch angepasst
+            // ---- Auslesen der Datei ----
+
         }
     }
 }
