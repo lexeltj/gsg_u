@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace gsg_u
 {
     partial class Form1
     {
