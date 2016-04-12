@@ -41,7 +41,7 @@ namespace gsg_u
                 modDateiEinlesen(vz);
                 // ------ test
                
-                textBox1.Text += kurz_teststring;
+               
                 textBox1.Text += "\r\n" + md5_do(@"C:\Program Files (x86)\Steam\steamapps\common\Arma 3\mods.txt");
                 // --- serverdatei download
                 serverModsEinlesen();
@@ -127,12 +127,8 @@ namespace gsg_u
         }
         public bool vergleich(string local, string remote)
         {
-            if ( local ==  remote)
-                {
-                return true;
-            } else {
-                return false;
-            }
+            // --- lokalen hash mit remote hash vergleichen ---
+            return  (local == remote) ? true : false;
         }
         public void serverModsEinlesen()
         {
