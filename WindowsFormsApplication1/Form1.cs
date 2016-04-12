@@ -40,7 +40,9 @@ namespace gsg_u
                 // -------- Mod - Datei einlesen
                 modDateiEinlesen(vz);
                 // ------ test
-                textBox1.Text += md5_do(@"C:\Program Files (x86)\Steam\steamapps\common\Arma 3\mods.txt");
+               
+                textBox1.Text += kurz_teststring;
+                textBox1.Text += "\r\n" + md5_do(@"C:\Program Files (x86)\Steam\steamapps\common\Arma 3\mods.txt");
                 // --- serverdatei download
                 serverModsEinlesen();
             }
