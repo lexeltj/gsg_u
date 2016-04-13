@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Security.Cryptography;
 using System.Net;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace gsg_u
 {
@@ -44,7 +46,8 @@ namespace gsg_u
                
                 textBox1.Text += "\r\n" + md5_do(@"C:\Program Files (x86)\Steam\steamapps\common\Arma 3\mods.txt");
                 // --- serverdatei download
-                serverModsEinlesen();
+                serverModsEinlesen(vz);
+                xmlLesen(vz + "gsg_mod.xml");
             }
         }
         private void modDateiEinlesen(string a_verzeichnis)
@@ -130,14 +133,38 @@ namespace gsg_u
             // --- lokalen hash mit remote hash vergleichen ---
             return  (local == remote) ? true : false;
         }
-        public void serverModsEinlesen()
+        public void serverModsEinlesen(string arma_vz)
         {
             //---------- Aufrufen des Pfades zum Server / Modordner und Pbo's abfragen / MD5-Checksum erstellen ----------
             // ---- Download der Cheksum Datei ----
             WebClient webClient = new WebClient();
-            webClient.DownloadFile("http://server.grenzschutzgruppe.de/mod_updates/check.txt", @"c:\Users\lexel\check.txt"); // ist nur zum testen. wird noch angepasst
+            //webClient.DownloadFile("http://server.grenzschutzgruppe.de/mod_updates/check.txt", @"c:\Users\lexel\check.txt"); // ist nur zum testen. wird noch angepasst
+            // ---- Download der aktuellen XML Datei vom Server ----
+            webClient.DownloadFile("http://server.grenzschutzgruppe.de/mod_updates/gsg_mod.xml", arma_vz + "gsg_mod.xml");
             // ---- Auslesen der Datei ----
 
+        }
+        public void xmlLesen(string xmlDatei)
+
+        {
+
+            int c = 0;
+            XElement xelement = XElement.Load(xmlDatei);
+            IEnumerable<XElement> gsg_mod = xelement.Elements();
+            Console.WriteLine("List of all mod Names along with their ID and the rest:");
+            foreach (var mod in gsg_mod)
+            {
+                Console.WriteLine("name {0} und wert {1} und key {2}",
+
+                    mod.Element("pbo").Value,
+                    mod.Element("hash").Value,
+                    mod.Element("key"));
+               
+                    dataGridView1.Rows.Insert(c, mod.Element("pbo").Value, mod.Element("hash").Value, mod.Element("key").Value);
+                   
+                
+                c++;
+            }
         }
     }
 }
