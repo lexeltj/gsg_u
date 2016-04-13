@@ -142,7 +142,7 @@ namespace gsg_u
             // ---- Download der aktuellen XML Datei vom Server ----
             webClient.DownloadFile("http://server.grenzschutzgruppe.de/mod_updates/gsg_mod.xml", arma_vz + "gsg_mod.xml");
             // ---- Auslesen der Datei ----
-
+           
         }
         public void xmlLesen(string xmlDatei)
 
@@ -154,13 +154,14 @@ namespace gsg_u
             Console.WriteLine("List of all mod Names along with their ID and the rest:");
             foreach (var mod in gsg_mod)
             {
-                Console.WriteLine("name {0} und wert {1} und key {2}",
+                /*Console.WriteLine("name {0} und wert {1} und key {2}",
 
                     mod.Element("pbo").Value,
                     mod.Element("hash").Value,
-                    mod.Element("key"));
+                    mod.Element("key"));*/
+
+                dataGridView1.Rows.Insert(c, mod.Element("pbo").Value, mod.Element("hash").Value, mod.Element("key").Value);
                
-                    dataGridView1.Rows.Insert(c, mod.Element("pbo").Value, mod.Element("hash").Value, mod.Element("key").Value);
                 string aktuellWert = dataGridView1.Rows[c].Cells[1].Value.ToString();
 
                 if (aktuellWert == "123456")
