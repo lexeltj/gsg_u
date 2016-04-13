@@ -30,6 +30,7 @@ namespace gsg_u
         {
             if (button1.Text == "beenden")
             {
+                // Nach Abruf der Mod's und nochmaligen betätigen des Buttons wird das Programm beendet
                 Application.Exit();
             }
             else
@@ -37,17 +38,24 @@ namespace gsg_u
                 // ---------------- Arma Verzeichniss suchen ---------------
 
                 string vz = sucheVerzeichnis();
-                textBox1.Text += " gefunden.\r\n" + vz;
+                textBox1.Text += " gefunden.\r\n" + vz; // Ausgabe des gefunden Ordners
 
-                // -------- Mod - Datei einlesen
+                // ---------------- Mod - Datei einlesen -------------------
+                
+                // ------ serverdatei download -----
+                serverModsEinlesen(vz); // Download der XML datei vom Server ins Arma Verzeichnis
+                xmlLesen(vz + "gsg_mod.xml");   // Auslesen der XML Datei und Grafische Darstellung
+                                                // der aktuellen und zu updateten Mods
+
+                // -------------------------------------------------------------------------
+                // -------------------------------TESTS-------------------------------------
+                // --- wird wieder netfernt. Mods werden über eine andere Quelle eingelesen
                 modDateiEinlesen(vz);
-                // ------ test
-               
-               
+                // ------ test -----
+                // ---- weitere Tests
                 textBox1.Text += "\r\n" + md5_do(@"C:\Program Files (x86)\Steam\steamapps\common\Arma 3\mods.txt");
-                // --- serverdatei download
-                serverModsEinlesen(vz);
-                xmlLesen(vz + "gsg_mod.xml");
+                // -------------------------------------------------------------------------
+                // -------------------------------------------------------------------------
             }
         }
         private void modDateiEinlesen(string a_verzeichnis)
@@ -86,7 +94,6 @@ namespace gsg_u
                 button1.Text = "beenden";
                 button1.Enabled = true;
             }
-        
         private string sucheVerzeichnis()
         {
             // Jetzt prüfen wir mal ob es ein bestimmtes Verzeichnis gibt
@@ -115,7 +122,6 @@ namespace gsg_u
                 return arma_anders;
             }
         }
-
         public string  md5_do(string pbo)
         {
             
