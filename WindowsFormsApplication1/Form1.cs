@@ -161,10 +161,16 @@ namespace gsg_u
                     mod.Element("key"));
                
                     dataGridView1.Rows.Insert(c, mod.Element("pbo").Value, mod.Element("hash").Value, mod.Element("key").Value);
-                   
-                
+                string aktuellWert = dataGridView1.Rows[c].Cells[1].Value.ToString();
+
+                if (aktuellWert == "123456")
+                {
+                    dataGridView1.Rows[c].DefaultCellStyle.BackColor = Color.Red;
+                }
+                this.dataGridView1.CurrentCell.Selected = false;
                 c++;
             }
+            
         }
     }
 }
