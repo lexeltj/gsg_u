@@ -93,7 +93,6 @@
             this.Column1,
             this.Column2,
             this.Column3});
-            this.dataGridView1.Enabled = false;
             this.dataGridView1.Location = new System.Drawing.Point(15, 83);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
