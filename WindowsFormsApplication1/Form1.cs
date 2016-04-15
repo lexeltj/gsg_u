@@ -153,6 +153,8 @@ namespace gsg_u
         public void xmlLesen(string xmlDatei)
 
         {
+            dataGridView1.Visible = true;
+            pictureBox1.Visible = false;
 
             int c = 0;
             XElement xelement = XElement.Load(xmlDatei);
