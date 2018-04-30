@@ -144,11 +144,17 @@ namespace gsg_u
             //---------- Aufrufen des Pfades zum Server / Modordner und Pbo's abfragen / MD5-Checksum erstellen ----------
             // ---- Download der Cheksum Datei ----
             WebClient webClient = new WebClient();
-            //webClient.DownloadFile("http://server.grenzschutzgruppe.de/mod_updates/check.txt", @"c:\Users\lexel\check.txt"); // ist nur zum testen. wird noch angepasst
-            // ---- Download der aktuellen XML Datei vom Server ----
-            webClient.DownloadFile("http://server.grenzschutzgruppe.de/mod_updates/gsg_mod.xml", arma_vz + "gsg_mod.xml");
-            // ---- Auslesen der Datei ----
-           
+            try
+            {
+                //webClient.DownloadFile("http://server.grenzschutzgruppe.de/mod_updates/check.txt", @"c:\Users\lexel\check.txt"); // ist nur zum testen. wird noch angepasst
+                // ---- Download der aktuellen XML Datei vom Server ----
+                webClient.DownloadFile("http://server.grenzschutzgruppe.de/mod_updates/gsg_mod.xml", arma_vz + "gsg_mod.xml");
+                // ---- Auslesen der Datei ----
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("Error: {0}", e.Message);
+            }
         }
         public void xmlLesen(string xmlDatei)
 

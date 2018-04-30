@@ -128,9 +128,9 @@
             // 
             this.pictureBox1.BackgroundImage = global::gsg_u.Properties.Resources.GSGneux256;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(304, 52);
+            this.pictureBox1.Location = new System.Drawing.Point(443, 9);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 154);
+            this.pictureBox1.Size = new System.Drawing.Size(67, 56);
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
